@@ -64,7 +64,8 @@ class STResNet(nn.Module):
         if self.gpu_available:
             self.gpu = torch.device("cuda:0")
         self._build_stresnet()
-        self.save_path = "L%d_C%d_P%d_%T%d/" % (self.nb_residual_unit, self.len_closeness, self.len_period, self.len_trend)
+        self.save_path = "L%d_C%d_P%d_T%d/" % (self.nb_residual_unit, self.len_closeness, self.len_period, self.len_trend)
+
         self.best_rmse = 999
         self.best_mae = 999
 

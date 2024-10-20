@@ -7,11 +7,11 @@ import logging
 from torch.utils.data import TensorDataset, DataLoader
 sys.path.append('../')
 from data.TaxiBJ.TaxiBJ import load_data
-from models.STResNet import STResNet
+from models.MrM import STResNet
 import torch
 import numpy as np
-os.environ['CUDA_VISIBLE_DEVICES'] = '7'
 gpu_available = torch.cuda.is_available()
+print("gpu:",gpu_available)
 if gpu_available:
     gpu = torch.device("cuda:0")
 
@@ -63,4 +63,4 @@ if __name__ == '__main__':
     X_test_torch = [torch.Tensor(x) for x in X_test]
     model.train_model(train_loader, X_test_torch, torch.Tensor(Y_test))
     model.load_model("best")
-    model.evaluate(mmn, X_test_torch, torch.Tensor(Y_test))
+    print(model.evaluate(X_test_torch, torch.Tensor(Y_test)))
